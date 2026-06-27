@@ -25,7 +25,7 @@ test("init rejects an unnamed relay", () => {
   run(["init"], output);
 
   assert.equal(output.exitCode, 1);
-  assert.match(output.stderr.text, /Usage: open-work-relay init <name>/);
+  assert.match(output.stderr.text, /Usage: agent-relay init <name>/);
 });
 
 test("init accepts the relay name after options", () => {

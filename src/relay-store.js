@@ -10,7 +10,7 @@ const DONE_STATUSES = new Set(["done"]);
 const WORKSPACE_CONFIG_FILE = "relay.json";
 
 function defaultRelayRoot() {
-  return process.env.OPEN_WORK_RELAY_HOME || path.join(os.homedir(), ".open-work-relay");
+  return process.env.AGENT_RELAY_HOME || process.env.OPEN_WORK_RELAY_HOME || path.join(os.homedir(), ".agent-relay");
 }
 
 function defaultNamedRelayRoot(name) {

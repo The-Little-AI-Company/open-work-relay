@@ -285,7 +285,7 @@ function renderDashboardHtml(data) {
       <div class="frame">
         <header class="topbar">
           <div>
-            <p class="eyebrow">Open Work Relay / Ink Console</p>
+            <p class="eyebrow">Agent Relay / Ink Console</p>
             <h1>${escapeHtml(data.name)}</h1>
           </div>
           <div class="top-actions" aria-label="Dashboard actions">

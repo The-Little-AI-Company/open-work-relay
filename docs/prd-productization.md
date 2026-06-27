@@ -1,4 +1,4 @@
-# PRD: Open Work Relay Productization
+# PRD: Agent Relay Productization
 
 Version: 0.1.0
 Status: draft
@@ -9,7 +9,7 @@ Owner: Jeff
 
 AI users already work across multiple agents (Claude, Codex, ChatGPT, browser agents) and multiple tools. The weak point is not the model — it is the handoff. Humans become the copy-paste layer between agents, losing source material, decisions, limits, and evidence at every transition.
 
-Open Work Relay solves this with a protocol: turn handoffs into visible task records that carry source, state, limits, ownership, and receipts through a shared queue.
+Agent Relay solves this with a product surface around the Open Work Relay protocol: turn handoffs into visible task records that carry source, state, limits, ownership, and receipts through a shared queue.
 
 The kit exists today as a protocol and starter pack (spec, templates, adapters, workflow examples, smoke test). It is usable but not yet a product. This PRD defines the path from open kit to offering.
 
@@ -55,13 +55,15 @@ What is missing (gaps):
 
 **The protocol stays free and open (MIT). The product is the convenience layer on top: automation, validation, visibility, and coordination.**
 
-Product boundary correction: Open Work Relay should not drop handoff prompts, planning documents, or session handoff files into normal project docs. By default, relay state lives outside project repos in a user-level relay workspace, with records linked to the projects they coordinate. A project should only receive local relay files when the user explicitly opts into a project-local `work-relay/` folder. Product planning artifacts stay outside downstream projects.
+Product boundary correction: Agent Relay should not drop handoff prompts, planning documents, or session handoff files into normal project docs. By default, relay state lives outside project repos in a user-level relay workspace, with records linked to the projects they coordinate. A project should only receive local relay files when the user explicitly opts into a project-local `work-relay/` folder. Product planning artifacts stay outside downstream projects.
 
 The first real product surface is a personal dashboard for the user's projects. It should make the user's active relay work visible across projects without turning every repo into a paperwork dump.
 
 Chosen dashboard direction: Ink Console. The dashboard should feel like a dense local operations console: dark working surface, strong status signals, project rail, work queue, human-attention spotlight, and proof trail.
 
 Named install correction: users install a relay workspace with their own name and chosen folder. The product can be distributed as `npx open-work-relay init "Client Ops Relay" --root ./client-ops-relay`; the generated dashboard should show the relay's configured name rather than hard-coding "Open Work Relay" as the workspace identity.
+
+Naming correction: Agent Relay is the product name. Open Work Relay remains the protocol/spec name. The unscoped npm package name `agent-relay` is already taken, so the current package slug remains `open-work-relay` while the CLI exposes an `agent-relay` command alias.
 
 Open-core shape:
 
@@ -94,12 +96,12 @@ Goal: the relay feels like a system, not a document.
 
 Requirements:
 
-- P2-1: `open-work-relay status` — list tasks by status, flag stale claims, show blocked tasks and their blocking questions.
-- P2-2: `open-work-relay validate` — check every task has all seven parts, every receipt matches a task, every status transition is legal, every `needs-input` task has a blocking question.
-- P2-3: `open-work-relay new` — scaffold a task from the template with front matter pre-filled (ID auto-increment, dates, status `ready`).
-- P2-4: `open-work-relay receipt` — scaffold a receipt linked to a task.
-- P2-5: `open-work-relay claim <task-id>` — mark a task claimed with actor name and timestamp.
-- P2-6: `open-work-relay done <task-id>` — move a task to done, require a receipt to exist first.
+- P2-1: `agent-relay status` — list tasks by status, flag stale claims, show blocked tasks and their blocking questions.
+- P2-2: `agent-relay validate` — check every task has all seven parts, every receipt matches a task, every status transition is legal, every `needs-input` task has a blocking question.
+- P2-3: `agent-relay new` — scaffold a task from the template with front matter pre-filled (ID auto-increment, dates, status `ready`).
+- P2-4: `agent-relay receipt` — scaffold a receipt linked to a task.
+- P2-5: `agent-relay claim <task-id>` — mark a task claimed with actor name and timestamp.
+- P2-6: `agent-relay done <task-id>` — move a task to done, require a receipt to exist first.
 - P2-7: CLI works on markdown folder as the universal layer; queue-specific adapters (GitHub, Linear) plug in via a provider interface.
 
 Success criteria:
@@ -117,7 +119,7 @@ Requirements:
 
 - P3-1: Stale-claim detection — a task `claimed` for > N hours (configurable, default 24h) with no receipt gets flagged and optionally re-opened.
 - P3-2: Claim lock via front-matter heartbeat — `claimed_at` timestamp plus `heartbeat_at` that agents update while working.
-- P3-3: `open-work-relay health` — relay health check that surfaces: tasks stuck in `working` with no recent receipt, tasks in `needs-input` with no blocking question, stale claims, orphaned receipts.
+- P3-3: `agent-relay health` — relay health check that surfaces: tasks stuck in `working` with no recent receipt, tasks in `needs-input` with no blocking question, stale claims, orphaned receipts.
 - P3-4: Optional claim file (`.relay/locks/`) for environments where front-matter race conditions are a concern.
 
 Success criteria:
@@ -155,7 +157,7 @@ Requirements:
 
 - P5-1: A pack format — a bundle of workflow templates, task templates, adapter configs, and an `AGENTS.md` block tailored to a vertical.
 - P5-2: First packs: legal intake, real-estate transaction, agency client onboarding, support team triage, household logistics.
-- P5-3: Pack install command — `open-work-relay install pack <name>` drops the pack into the relay folder.
+- P5-3: Pack install command — `agent-relay install pack <name>` drops the pack into the relay folder.
 - P5-4: Pack listing on the hosted dashboard or a simple registry.
 
 Success criteria:
@@ -186,10 +188,10 @@ The core is free because useful AI knowledge should travel. The product is conve
 ## 8. Open Questions
 
 - OQ-1: Resolved for the first product slice: Node.js CLI, because `npx` is the lowest-friction route to one-command setup.
-- OQ-2: Resolved for the first product slice: default named installs to `~/.open-work-relay/<relay-slug>`, with `OPEN_WORK_RELAY_HOME` and `--root` overrides.
+- OQ-2: Resolved for the first product slice: default named installs to `~/.agent-relay/<relay-slug>`, with `AGENT_RELAY_HOME`, legacy `OPEN_WORK_RELAY_HOME`, and `--root` overrides.
 - OQ-3: What is the pricing model for the subscription tier? (Per-seat, per-team, flat?)
 - OQ-4: Should the CLI support `--json` output for agent consumption, so agents can self-check relay state programmatically?
-- OQ-5: Should there be a `open-work-relay daemon` that watches the queue and auto-flags stale claims in real time, or is the CLI poll model sufficient?
+- OQ-5: Should there be an `agent-relay daemon` that watches the queue and auto-flags stale claims in real time, or is the CLI poll model sufficient?
 
 ## 9. Technical Assumptions
 

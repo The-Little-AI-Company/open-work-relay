@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-06-27
+
+- Renamed the product surface to Agent Relay while keeping Open Work Relay as the protocol/spec language.
+- Added an `agent-relay` CLI alias alongside the existing package slug.
+- Changed the default local workspace home to `~/.agent-relay`, with `OPEN_WORK_RELAY_HOME` kept as a legacy fallback.
+
 ## 2026-06-26
 
 - Added `open-work-relay init <name> --root <folder>` so users can create named relay workspaces wherever they want.

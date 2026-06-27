@@ -26,7 +26,7 @@ function runInit(args, io = process) {
   const name = readPositionals(args)[0];
 
   if (!name) {
-    io.stderr.write(`Usage: open-work-relay init <name> [--root <path>]\n`);
+    io.stderr.write(`Usage: agent-relay init <name> [--root <path>]\n`);
     io.exitCode = 1;
     return null;
   }
@@ -36,7 +36,7 @@ function runInit(args, io = process) {
 
   io.stdout.write(`Created relay workspace: ${workspace.name}\n`);
   io.stdout.write(`Relay folder: ${workspace.root}\n`);
-  io.stdout.write(`Dashboard: open-work-relay dashboard --root "${workspace.root}"\n`);
+  io.stdout.write(`Dashboard: agent-relay dashboard --root "${workspace.root}"\n`);
   return workspace;
 }
 
@@ -77,7 +77,7 @@ function runDashboard(args, io = process) {
   server.listen(requestedPort, host, () => {
     const address = server.address();
     const port = typeof address === "object" && address ? address.port : requestedPort;
-    io.stdout.write(`Open Work Relay dashboard: http://${host}:${port}/\n`);
+    io.stdout.write(`Agent Relay dashboard: http://${host}:${port}/\n`);
     io.stdout.write(`Relay workspace: ${root}\n`);
   });
 
@@ -99,18 +99,19 @@ function readOption(args, name) {
 }
 
 function helpText() {
-  return `Open Work Relay
+  return `Agent Relay
 
 Usage:
-  open-work-relay init <name> [--root <path>]
-  open-work-relay dashboard [--root <path>] [--port <port>] [--host <host>]
+  agent-relay init <name> [--root <path>]
+  agent-relay dashboard [--root <path>] [--port <port>] [--host <host>]
 
 Examples:
   npx open-work-relay init "Client Ops Relay" --root ./client-ops-relay
   npx open-work-relay dashboard --root ./client-ops-relay
 
 Environment:
-  OPEN_WORK_RELAY_HOME  Default relay workspace path.
+  AGENT_RELAY_HOME      Default relay workspace path.
+  OPEN_WORK_RELAY_HOME  Legacy fallback for existing local experiments.
 
 Default relay workspace:
   ${defaultRelayRoot()}

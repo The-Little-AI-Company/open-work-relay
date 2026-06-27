@@ -1,6 +1,8 @@
-# Open Work Relay
+# Agent Relay
 
-Open Work Relay is a free, open handoff protocol for moving work between people and AI agents without losing the source, limits, status, or receipt.
+Agent Relay is a local dashboard and relay workspace for moving work between people and AI agents without losing the source, limits, status, or receipt.
+
+It is built on the free/open Open Work Relay protocol. The protocol stays open and inspectable; Agent Relay is the product surface that makes it usable.
 
 It starts from a simple idea:
 
@@ -8,7 +10,7 @@ It starts from a simple idea:
 
 Most AI users are already working across several tools. Claude might draft. Codex might edit files. ChatGPT might review. A browser agent might verify. A teammate might own the final call. The weak point is not the model. The weak point is the handoff.
 
-Open Work Relay turns the handoff into a visible task record.
+Agent Relay turns the handoff into a visible task record.
 
 ## What This Is
 
@@ -35,7 +37,7 @@ There is no app to install in v0. Use the queue you already have, or start with 
 - Not a hidden paid protocol.
 - Not a clone of anyone else's paid guide.
 
-Open Work Relay is an independent, free/open implementation of a public problem: humans should not be the copy-paste path between agents.
+Agent Relay is an independent product built around a public problem: humans should not be the copy-paste path between agents.
 
 ## Quick Start
 
@@ -62,7 +64,7 @@ The first product surface is a local personal dashboard for the user's projects.
 Create a named relay workspace wherever you want it:
 
 ```bash
-node bin/open-work-relay.js init "Client Ops Relay" --root ./client-ops-relay
+node bin/agent-relay.js init "Client Ops Relay" --root ./client-ops-relay
 ```
 
 With the published package, that becomes:
@@ -74,7 +76,7 @@ npx open-work-relay init "Client Ops Relay" --root ./client-ops-relay
 Then open the dashboard for that relay:
 
 ```bash
-node bin/open-work-relay.js dashboard --root ./client-ops-relay
+node bin/agent-relay.js dashboard --root ./client-ops-relay
 ```
 
 The dashboard uses the relay's configured name, so the user sees "Client Ops Relay" or whatever they named it, not a hard-coded product label.
@@ -84,7 +86,7 @@ The dashboard uses the Ink Console direction: project visibility, work status, h
 If no `--root` is provided during init, relay state still lives outside project repos by default:
 
 ```text
-~/.open-work-relay/
+~/.agent-relay/
   client-ops-relay/
     relay.json
     tasks/
@@ -95,7 +97,7 @@ If no `--root` is provided during init, relay state still lives outside project 
 Use a different workspace when testing:
 
 ```bash
-node bin/open-work-relay.js dashboard --root ./scratch-relay --port 8788
+node bin/agent-relay.js dashboard --root ./scratch-relay --port 8788
 ```
 
 ## Prompt Mode Vs Work Mode
