@@ -55,6 +55,33 @@ Open Work Relay is an independent, free/open implementation of a public problem:
 7. Run the smoke test:
    [`examples/markdown-folder/tasks/0001-say-hello-from-the-relay.md`](examples/markdown-folder/tasks/0001-say-hello-from-the-relay.md)
 
+## Local Dashboard
+
+The first product surface is a local personal dashboard for the user's projects.
+
+From this checkout:
+
+```bash
+node bin/open-work-relay.js dashboard
+```
+
+The dashboard uses the Ink Console direction: project visibility, work status, human attention, and receipts in one local browser view.
+
+By default, relay state lives outside project repos at:
+
+```text
+~/.open-work-relay/
+  tasks/
+  receipts/
+  done/
+```
+
+Use a different workspace when testing:
+
+```bash
+node bin/open-work-relay.js dashboard --root ./scratch-relay --port 8788
+```
+
 ## Prompt Mode Vs Work Mode
 
 Prompt mode:

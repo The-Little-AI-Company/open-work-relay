@@ -2,6 +2,9 @@
 
 ## 2026-06-26
 
+- Started the local dashboard product slice with a Node CLI and Ink Console direction.
+- Added `open-work-relay dashboard` for serving a read-only local dashboard from a user-level relay workspace.
+- Added behavior tests for relay workspace loading and dashboard HTML serving.
 - Created initial public starter kit.
 - Added setup prompt.
 - Added task and receipt templates.
