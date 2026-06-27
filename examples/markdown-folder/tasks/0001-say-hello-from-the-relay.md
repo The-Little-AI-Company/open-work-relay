@@ -4,7 +4,7 @@ title: Say hello from the relay
 status: ready
 priority: low
 deadline:
-project: open-work-relay
+project: agent-relay
 tags: [smoke-test]
 source_queue: markdown
 external_url:

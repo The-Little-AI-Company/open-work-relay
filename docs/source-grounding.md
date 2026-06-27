@@ -1,6 +1,6 @@
 # Source Grounding
 
-Open Work Relay is built from public problem framing and an independent open implementation.
+Agent Relay is built from public problem framing and independent implementation choices.
 
 No paid guide or private packet was used.
 
@@ -12,7 +12,7 @@ No paid guide or private packet was used.
 
 ## Transcript-Grounded Concepts
 
-The core protocol follows concepts described in the public video transcript:
+The core method follows concepts described in the public video transcript:
 
 - multiple AI tools do different parts of the work,
 - the human becomes the handoff layer between tools,
@@ -34,7 +34,7 @@ The client-call example comes from the transcript's prompt-mode versus work-mode
 Transcript -> Decision -> Promise Boundary -> Draft Follow-Up -> Flag Judgment -> Stop Before Send
 ```
 
-Open Work Relay turns that into:
+Agent Relay turns that into:
 
 - attach the call transcript,
 - state the decision that was made,
@@ -52,7 +52,7 @@ The support example comes from the transcript's support-ticket work-mode pattern
 Classify -> Attach History -> Check Known Issue -> Escalate -> Product Task -> Show Stop
 ```
 
-Open Work Relay turns that into:
+Agent Relay turns that into:
 
 - classify the ticket,
 - attach customer or conversation history,
@@ -68,7 +68,7 @@ The schedule example comes from the transcript's pickup-time pattern:
 Change -> Check -> Draft -> Pause
 ```
 
-Open Work Relay turns that into:
+Agent Relay turns that into:
 
 - identify the new constraint,
 - check what the changed time affects,
@@ -77,7 +77,7 @@ Open Work Relay turns that into:
 
 ## Independent Extensions
 
-These are Open Work Relay extensions built for the public kit:
+These are Agent Relay extensions:
 
 - queue adapters for Markdown folder, GitHub Issues, Trello, Linear, and Notion,
 - workflow templates,
@@ -87,4 +87,4 @@ These are Open Work Relay extensions built for the public kit:
 - donation-supported open distribution,
 - TLAC public packaging.
 
-Those extensions are not presented as claims about the paid guide. They are implementation choices for a free/open version.
+Those extensions are not presented as claims about the paid guide. They are Agent Relay implementation choices.

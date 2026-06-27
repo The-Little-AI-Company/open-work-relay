@@ -24,9 +24,9 @@ Work mode:
 
 That second one can survive a handoff.
 
-So I made Open Work Relay.
+So I made Agent Relay.
 
-It is a free/open kit for moving work between humans and AI agents through a shared queue. The starting patterns are client follow-up, support tickets, and schedule changes. Use a Markdown folder, GitHub Issues, Trello, Linear, Notion, or whatever your agent can actually read and write.
+It is a local-first kit for moving work between humans and AI agents through a shared queue. The starting patterns are client follow-up, support tickets, and schedule changes. Use a Markdown folder, GitHub Issues, Trello, Linear, Notion, or whatever your agent can actually read and write.
 
 Every task carries:
 
@@ -41,7 +41,7 @@ Every task carries:
 No paid gate. No hidden "real version." Just a protocol you can copy, adapt, and run.
 
 Setup prompt:
-https://github.com/The-Little-AI-Company/open-work-relay/blob/dev/prompts/open-work-relay-setup-prompt.md
+https://github.com/The-Little-AI-Company/agent-relay/blob/dev/prompts/agent-relay-setup-prompt.md
 
 Repo:
-https://github.com/The-Little-AI-Company/open-work-relay
+https://github.com/The-Little-AI-Company/agent-relay

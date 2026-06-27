@@ -1,6 +1,6 @@
 # Markdown Queue Template
 
-Use this when you want Open Work Relay without a separate project-management tool.
+Use this when you want Agent Relay without a separate project-management tool.
 
 ## Folder Shape
 

@@ -9,9 +9,9 @@ Owner: Jeff
 
 AI users already work across multiple agents (Claude, Codex, ChatGPT, browser agents) and multiple tools. The weak point is not the model — it is the handoff. Humans become the copy-paste layer between agents, losing source material, decisions, limits, and evidence at every transition.
 
-Agent Relay solves this with a product surface around the Open Work Relay protocol: turn handoffs into visible task records that carry source, state, limits, ownership, and receipts through a shared queue.
+Agent Relay solves this by turning handoffs into visible task records that carry source, state, limits, ownership, and receipts through a shared queue.
 
-The kit exists today as a protocol and starter pack (spec, templates, adapters, workflow examples, smoke test). It is usable but not yet a product. This PRD defines the path from open kit to offering.
+The kit exists today as a starter pack plus first local product slice (spec, CLI, dashboard, templates, adapters, workflow examples, smoke test). This PRD defines the path from starter kit to a useful product.
 
 ## 2. Target Users
 
@@ -32,7 +32,7 @@ The kit exists today as a protocol and starter pack (spec, templates, adapters, 
 What exists:
 
 - Formal specification (`docs/specification.md`)
-- Setup prompt that interviews the user and emits a configured relay (`prompts/open-work-relay-setup-prompt.md`)
+- Setup prompt that interviews the user and emits a configured relay (`prompts/agent-relay-setup-prompt.md`)
 - `AGENTS.md` protocol block
 - Templates: task, receipt, workflow, queue
 - Adapters: Markdown folder, GitHub Issues, Trello, Linear, Notion
@@ -53,7 +53,7 @@ What is missing (gaps):
 
 ## 4. Product Vision
 
-**The protocol stays free and open (MIT). The product is the convenience layer on top: automation, validation, visibility, and coordination.**
+**The core stays free and open (MIT). The product is the simplest useful layer for continuation: automation, validation, visibility, and coordination.**
 
 Product boundary correction: Agent Relay should not drop handoff prompts, planning documents, or session handoff files into normal project docs. By default, relay state lives outside project repos in a user-level relay workspace, with records linked to the projects they coordinate. A project should only receive local relay files when the user explicitly opts into a project-local `work-relay/` folder. Product planning artifacts stay outside downstream projects.
 
@@ -61,9 +61,9 @@ The first real product surface is a personal dashboard for the user's projects. 
 
 Chosen dashboard direction: Ink Console. The dashboard should feel like a dense local operations console: dark working surface, strong status signals, project rail, work queue, human-attention spotlight, and proof trail.
 
-Named install correction: users install a relay workspace with their own name and chosen folder. The product can be distributed as `npx open-work-relay init "Client Ops Relay" --root ./client-ops-relay`; the generated dashboard should show the relay's configured name rather than hard-coding "Open Work Relay" as the workspace identity.
+Named install correction: users install a relay workspace with their own name and chosen folder. The product can be distributed as `npx @the-little-ai-company/agent-relay init "Client Ops Relay" --root ./client-ops-relay`; the generated dashboard should show the relay's configured name rather than hard-coding "Agent Relay" as the workspace identity.
 
-Naming correction: Agent Relay is the product name. Open Work Relay remains the protocol/spec name. The unscoped npm package name `agent-relay` is already taken, so the current package slug remains `open-work-relay` while the CLI exposes an `agent-relay` command alias.
+Naming correction: Agent Relay is the only public name. The unscoped npm package name `agent-relay` is already taken, so the publishable package name is `@the-little-ai-company/agent-relay` while the installed command is still `agent-relay`.
 
 Open-core shape:
 
@@ -71,6 +71,16 @@ Open-core shape:
 - **Paid tier (subscription):** hosted sync, multi-agent coordination, receipt sync to GitHub/Linear/Notion, team settings, alerts.
 - **Paid packs:** vertical workflow templates for specific industries.
 - **Services:** paid setup and onboarding for teams.
+
+Irreducible product shape:
+
+- named relay workspace,
+- task records,
+- receipt records,
+- CLI,
+- local dashboard.
+
+Agent Relay should reduce agent context, not increase it. Agents should resume from task records, latest relevant receipts, and linked sources instead of reading whole chats or generated handoff documents.
 
 ## 5. Product Phases
 
@@ -80,7 +90,7 @@ Goal: a new user goes from zero to a working relay folder in one command.
 
 Requirements:
 
-- P1-1: A one-command scaffolder (`npx open-work-relay init "Relay Name" --root <folder>` or equivalent) that creates a ready-to-use named relay workspace at the folder the user chooses. If `--root` is omitted, it creates a named folder under the user-level relay home. It may offer an explicit `--local` option later to create `work-relay/tasks/`, `work-relay/receipts/`, and `work-relay/done/` inside the current project, but local project files are opt-in. It must not copy handoff prompts, PRDs, planning docs, or session handoff files into the target project.
+- P1-1: A one-command scaffolder (`npx @the-little-ai-company/agent-relay init "Relay Name" --root <folder>` or equivalent) that creates a ready-to-use named relay workspace at the folder the user chooses. If `--root` is omitted, it creates a named folder under the user-level relay home. It may offer an explicit `--local` option later to create `work-relay/tasks/`, `work-relay/receipts/`, and `work-relay/done/` inside the current project, but local project files are opt-in. It must not copy handoff prompts, PRDs, planning docs, or session handoff files into the target project.
 - P1-2: Fill in the support link (GitHub Sponsors, Buy Me a Coffee, or Stripe).
 - P1-3: Add a second smoke-test task that exercises a blocked path (agent hits a stop rule, leaves a `needs-input` receipt) so people see the full loop.
 - P1-4: Write a quickstart that is shorter than the current README (3 steps max to first running task).
@@ -169,7 +179,7 @@ Success criteria:
 
 | Layer | Price | What you get |
 |---|---|---|
-| Core protocol (spec, templates, adapters, CLI core) | Free / MIT | The full relay protocol, usable on any queue |
+| Core method (spec, templates, adapters, CLI core) | Free / MIT | The full relay method, usable on any queue |
 | Local personal dashboard | Free / MIT | Personal project visibility over the user's relay workspace |
 | Hosted sync + team coordination | Subscription (TBD pricing) | Cloud sync, team settings, alerts, external queue sync |
 | Vertical workflow packs | Paid per pack or bundle | Pre-built workflows for specific industries |
@@ -182,13 +192,13 @@ The core is free because useful AI knowledge should travel. The product is conve
 - Not building a new project-management tool. The relay uses existing queues.
 - Not replacing human judgment. The protocol explicitly routes decisions to people.
 - Not a hosted AI agent. The relay coordinates agents that already exist; it does not run them.
-- Not a paywall on the protocol. The spec, templates, and adapters remain free forever.
+- Not a paywall on the core method. The spec, templates, and adapters remain free forever.
 - Not filling projects with handoff documents. The relay's state belongs in the selected queue, not as stray planning or handoff docs in an app repo.
 
 ## 8. Open Questions
 
 - OQ-1: Resolved for the first product slice: Node.js CLI, because `npx` is the lowest-friction route to one-command setup.
-- OQ-2: Resolved for the first product slice: default named installs to `~/.agent-relay/<relay-slug>`, with `AGENT_RELAY_HOME`, legacy `OPEN_WORK_RELAY_HOME`, and `--root` overrides.
+- OQ-2: Resolved for the first product slice: default named installs to `~/.agent-relay/<relay-slug>`, with `AGENT_RELAY_HOME` and `--root` overrides.
 - OQ-3: What is the pricing model for the subscription tier? (Per-seat, per-team, flat?)
 - OQ-4: Should the CLI support `--json` output for agent consumption, so agents can self-check relay state programmatically?
 - OQ-5: Should there be an `agent-relay daemon` that watches the queue and auto-flags stale claims in real time, or is the CLI poll model sufficient?

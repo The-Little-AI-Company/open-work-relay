@@ -1,6 +1,6 @@
 # Adapter: Markdown Folder
 
-Markdown folder is the universal fallback for Open Work Relay.
+Markdown folder is the universal fallback for Agent Relay.
 
 ## Best For
 

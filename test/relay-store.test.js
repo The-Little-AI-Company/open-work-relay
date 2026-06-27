@@ -57,7 +57,7 @@ test("loads project, task, receipt, and attention summaries from a relay workspa
       "id: TASK-002",
       "title: Build local dashboard",
       "status: ready",
-      "project: Open Work Relay",
+      "project: Agent Relay",
       "next_actor: Codex",
       "updated: 2026-06-26",
       "---",
@@ -104,7 +104,7 @@ test("loads project, task, receipt, and attention summaries from a relay workspa
     data.projects.map((project) => [project.name, project.total, project.needsJeff, project.ready]),
     [
       ["Obscura", 1, 1, 0],
-      ["Open Work Relay", 1, 0, 1],
+      ["Agent Relay", 1, 0, 1],
     ],
   );
   assert.equal(data.attention[0].id, "TASK-001");

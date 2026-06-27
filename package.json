@@ -1,11 +1,10 @@
 {
-  "name": "open-work-relay",
+  "name": "@the-little-ai-company/agent-relay",
   "version": "0.1.0",
   "description": "Agent Relay local workspace and personal dashboard for AI-assisted work.",
   "license": "MIT",
   "bin": {
-    "agent-relay": "./bin/agent-relay.js",
-    "open-work-relay": "./bin/open-work-relay.js"
+    "agent-relay": "./bin/agent-relay.js"
   },
   "scripts": {
     "test": "node --test"

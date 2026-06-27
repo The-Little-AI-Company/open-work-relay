@@ -56,4 +56,4 @@ Work mode needs:
 - status,
 - done evidence.
 
-That is why Open Work Relay is built around a task record instead of a better prompt alone.
+That is why Agent Relay is built around a task record instead of a better prompt alone.

@@ -106,12 +106,11 @@ Usage:
   agent-relay dashboard [--root <path>] [--port <port>] [--host <host>]
 
 Examples:
-  npx open-work-relay init "Client Ops Relay" --root ./client-ops-relay
-  npx open-work-relay dashboard --root ./client-ops-relay
+  npx @the-little-ai-company/agent-relay init "Client Ops Relay" --root ./client-ops-relay
+  npx @the-little-ai-company/agent-relay dashboard --root ./client-ops-relay
 
 Environment:
   AGENT_RELAY_HOME      Default relay workspace path.
-  OPEN_WORK_RELAY_HOME  Legacy fallback for existing local experiments.
 
 Default relay workspace:
   ${defaultRelayRoot()}

@@ -4,19 +4,19 @@ The launch should point people to the GitHub repo and the setup prompt.
 
 Canonical repo:
 
-`https://github.com/The-Little-AI-Company/open-work-relay`
+`https://github.com/The-Little-AI-Company/agent-relay`
 
 Canonical setup prompt:
 
-`https://github.com/The-Little-AI-Company/open-work-relay/blob/dev/prompts/open-work-relay-setup-prompt.md`
+`https://github.com/The-Little-AI-Company/agent-relay/blob/dev/prompts/agent-relay-setup-prompt.md`
 
 Canonical specification:
 
-`https://github.com/The-Little-AI-Company/open-work-relay/blob/dev/docs/specification.md`
+`https://github.com/The-Little-AI-Company/agent-relay/blob/dev/docs/specification.md`
 
 Canonical source grounding:
 
-`https://github.com/The-Little-AI-Company/open-work-relay/blob/dev/docs/source-grounding.md`
+`https://github.com/The-Little-AI-Company/agent-relay/blob/dev/docs/source-grounding.md`
 
 ## Surfaces
 

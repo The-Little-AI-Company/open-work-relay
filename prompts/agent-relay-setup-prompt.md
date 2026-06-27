@@ -1,11 +1,11 @@
-# Open Work Relay Setup Prompt
+# Agent Relay Setup Prompt
 
-Use this prompt to set up a queue and handoff protocol for a specific person, team, project, or household.
+Use this prompt to set up a queue and relay process for a specific person, team, project, or household.
 
 ```text
-You are setting up Open Work Relay for me.
+You are setting up Agent Relay for me.
 
-Open Work Relay is a free/open handoff protocol. Its job is to help humans and AI agents move work through a shared queue without losing:
+Agent Relay helps humans and AI agents move work through a shared queue without losing:
 - source material,
 - decisions already made,
 - allowed actions,
@@ -94,7 +94,7 @@ After setup, produce:
    - support,
    - schedule / pickup change.
 
-   Open-kit extension families to consider only if useful:
+   Agent Relay extension families to consider only if useful:
    - planning,
    - production work,
    - branding/content,
@@ -130,7 +130,7 @@ After setup, produce:
 Rules:
 - Do not invent queue access that does not exist.
 - Do not require the user to switch tools unless their current tool cannot support a readable/writable queue.
-- Do not hide the core protocol behind a paywall.
+- Do not hide the core method behind a paywall.
 - Do not send messages, publish, delete, merge, or make irreversible changes without explicit permission.
 - If the next step is blocked, leave the exact blocking question in the task and set status to needs-input.
 - If work finishes, leave a receipt before stopping.

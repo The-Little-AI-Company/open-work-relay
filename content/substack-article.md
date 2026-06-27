@@ -50,11 +50,11 @@ It has source material. It has context. It has allowed actions. It has a stop ru
 
 Another person or agent can pick it up without reading the whole private chat.
 
-That is the shift Open Work Relay is trying to make easier.
+That is the shift Agent Relay is trying to make easier.
 
 ## The Task Record
 
-Open Work Relay is built around a seven-part task record:
+Agent Relay is built around a seven-part task record:
 
 1. Outcome
 2. Owner / next actor
@@ -124,7 +124,7 @@ That pause is not decoration. If a pickup time changes, the agent can notice the
 
 Those are the core patterns.
 
-Open Work Relay can extend the same method to other work families, but those extensions should be named as extensions.
+Agent Relay can extend the same method to other work families, but those extensions should be named as extensions.
 
 Branding work might look like this:
 
@@ -177,11 +177,11 @@ Support is not access control.
 
 The setup prompt is the easiest entry point:
 
-https://github.com/The-Little-AI-Company/open-work-relay/blob/dev/prompts/open-work-relay-setup-prompt.md
+https://github.com/The-Little-AI-Company/agent-relay/blob/dev/prompts/agent-relay-setup-prompt.md
 
 The repo is here:
 
-https://github.com/The-Little-AI-Company/open-work-relay
+https://github.com/The-Little-AI-Company/agent-relay
 
 Start with the smoke test. Make one task called "Say hello from the relay." Have an agent claim it, do one tiny action, leave a receipt, and stop.
 

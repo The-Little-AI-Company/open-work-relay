@@ -1,6 +1,6 @@
-# Open Work Relay Agent Protocol
+# Agent Relay Agent Protocol
 
-You are operating inside a repo that uses Open Work Relay.
+You are operating inside a repo that uses Agent Relay.
 
 Your job is not only to answer prompts. Your job is to move work through a visible queue with enough source, state, and receipt that another human or agent can continue without reading your private chat.
 
@@ -29,7 +29,7 @@ Transcript-grounded families:
 - support,
 - schedule / pickup change.
 
-Open-kit extension families:
+Agent Relay extension families:
 
 - planning,
 - production,
@@ -44,7 +44,7 @@ Use:
 - `templates/workflow.md`
 - `examples/workflows/`
 
-Do not force every job into the same process. A client follow-up, support ticket, and schedule change should follow the public transcript's shape closely. Planning, code edits, and brand review are Open Work Relay extensions and should be proposed to the user as implementation choices.
+Do not force every job into the same process. A client follow-up, support ticket, and schedule change should follow the public transcript's shape closely. Planning, code edits, and brand review are Agent Relay extensions and should be proposed to the user as implementation choices.
 
 ## Before You Start
 

@@ -1,6 +1,6 @@
 # Methodology
 
-Open Work Relay is built from a few plain beliefs.
+Agent Relay is built from a few plain beliefs.
 
 ## 1. The Human Should Not Be The Hallway
 

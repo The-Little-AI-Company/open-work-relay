@@ -1,4 +1,4 @@
-# Open Work Relay Specification
+# Agent Relay Specification
 
 Version: 0.1.0
 
@@ -6,7 +6,7 @@ Status: draft
 
 ## 1. Intent
 
-Open Work Relay helps humans and AI agents move work through a shared queue without making the human carry every handoff.
+Agent Relay helps humans and AI agents move work through a shared queue without making the human carry every handoff.
 
 The system should:
 
@@ -30,7 +30,7 @@ Work mode gives a job to a system that can carry:
 - stop rules,
 - receipts.
 
-Open Work Relay is the protocol between those two modes.
+Agent Relay is the bridge between those two modes.
 
 ## 3. Core Objects
 
@@ -66,7 +66,7 @@ Every task must include:
 
 A workflow is the job-specific path a task should follow.
 
-The relay should not force every job into the same shape. The transcript-grounded examples are client follow-up, support tickets, and schedule/pickup changes. Open-kit extensions can add planning, production, branding, or custom workflows after the core is clear.
+The relay should not force every job into the same shape. The transcript-grounded examples are client follow-up, support tickets, and schedule/pickup changes. Agent Relay extensions can add planning, production, branding, or custom workflows after the core is clear.
 
 ### Receipt
 
@@ -120,9 +120,9 @@ The user can accept, edit, or reject the proposed workflow before it becomes a r
 Workflow families fall into two groups:
 
 - transcript-grounded examples,
-- independent extensions for the open kit.
+- independent Agent Relay extensions.
 
-Transcript-grounded examples should stay close to the public video transcript. Extensions should be clearly treated as Open Work Relay implementation choices, not claims about any paid guide.
+Transcript-grounded examples should stay close to the public video transcript. Extensions should be clearly treated as Agent Relay implementation choices, not claims about any paid guide.
 
 ### Client Call / Follow-Up Workflow
 
@@ -208,7 +208,7 @@ Stop reasons:
 
 ### Planning Workflow
 
-Independent extension for the open kit.
+Independent Agent Relay extension.
 
 Used for turning a fuzzy goal into tasks, issues, milestones, or a decision map.
 
@@ -231,7 +231,7 @@ Stop reasons:
 
 ### Production Work Workflow
 
-Independent extension for the open kit.
+Independent Agent Relay extension.
 
 Used for code, docs, writing, design, data cleanup, and other concrete production tasks.
 
@@ -253,7 +253,7 @@ Stop reasons:
 
 ### Branding / Content Workflow
 
-Independent extension for the open kit.
+Independent Agent Relay extension.
 
 Used for brand positioning, public posts, launch copy, visual direction, and content packaging.
 

@@ -2,8 +2,6 @@
 
 Agent Relay is a local dashboard and relay workspace for moving work between people and AI agents without losing the source, limits, status, or receipt.
 
-It is built on the free/open Open Work Relay protocol. The protocol stays open and inspectable; Agent Relay is the product surface that makes it usable.
-
 It starts from a simple idea:
 
 > Prompt mode asks an AI for an answer. Work mode gives a job to a system that can carry state, stop, resume, and show evidence.
@@ -14,11 +12,13 @@ Agent Relay turns the handoff into a visible task record.
 
 ## What This Is
 
-This repo is the starter kit:
+This repo is the starter kit and first local product:
 
 - a setup prompt,
 - an `AGENTS.md` protocol block,
 - a formal specification,
+- a Node CLI,
+- a local dashboard,
 - a task template,
 - a workflow template,
 - a receipt template,
@@ -26,8 +26,6 @@ This repo is the starter kit:
 - adapter notes for GitHub Issues, Trello, Linear, and Notion,
 - a smoke test,
 - platform-specific launch drafts.
-
-There is no app to install in v0. Use the queue you already have, or start with a plain folder.
 
 ## What This Is Not
 
@@ -42,7 +40,7 @@ Agent Relay is an independent product built around a public problem: humans shou
 ## Quick Start
 
 1. Open the setup prompt:
-   [`prompts/open-work-relay-setup-prompt.md`](prompts/open-work-relay-setup-prompt.md)
+   [`prompts/agent-relay-setup-prompt.md`](prompts/agent-relay-setup-prompt.md)
 2. Paste it into the AI agent you want to configure.
 3. Answer the setup questions.
 4. Pick your primary queue:
@@ -70,7 +68,7 @@ node bin/agent-relay.js init "Client Ops Relay" --root ./client-ops-relay
 With the published package, that becomes:
 
 ```bash
-npx open-work-relay init "Client Ops Relay" --root ./client-ops-relay
+npx @the-little-ai-company/agent-relay init "Client Ops Relay" --root ./client-ops-relay
 ```
 
 Then open the dashboard for that relay:
@@ -135,7 +133,7 @@ Examples:
 - [`examples/workflows/support-escalation.md`](examples/workflows/support-escalation.md)
 - [`examples/workflows/household-schedule-change.md`](examples/workflows/household-schedule-change.md)
 
-Open-kit extensions can add planning, production, branding/content, or custom workflows after the core is clear.
+Agent Relay extensions can add planning, production, branding/content, or custom workflows after the core is clear.
 
 Extension examples:
 
@@ -144,6 +142,9 @@ Extension examples:
 
 Formal spec:
 [`docs/specification.md`](docs/specification.md)
+
+Product principles:
+[`docs/product-principles.md`](docs/product-principles.md)
 
 Source grounding:
 [`docs/source-grounding.md`](docs/source-grounding.md)
@@ -238,7 +239,7 @@ Support link: TODO
 
 This project was sparked by public discussion about AI agent handoffs and the real pain of moving work across Claude, Codex, ChatGPT, OpenClaw, Hermes, browser agents, and team tools.
 
-No paid material was used to build this kit. The transcript-grounded patterns are documented in [`docs/source-grounding.md`](docs/source-grounding.md). The queue adapters, templates, and TLAC packaging are independent open implementation choices.
+No paid material was used to build this kit. The transcript-grounded patterns are documented in [`docs/source-grounding.md`](docs/source-grounding.md). The queue adapters, templates, and TLAC packaging are independent Agent Relay implementation choices.
 
 ## License
 

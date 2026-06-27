@@ -10,7 +10,7 @@ const DONE_STATUSES = new Set(["done"]);
 const WORKSPACE_CONFIG_FILE = "relay.json";
 
 function defaultRelayRoot() {
-  return process.env.AGENT_RELAY_HOME || process.env.OPEN_WORK_RELAY_HOME || path.join(os.homedir(), ".agent-relay");
+  return process.env.AGENT_RELAY_HOME || path.join(os.homedir(), ".agent-relay");
 }
 
 function defaultNamedRelayRoot(name) {
@@ -81,7 +81,7 @@ function loadWorkspaceConfig(root) {
   const configPath = path.join(root, WORKSPACE_CONFIG_FILE);
   if (!fs.existsSync(configPath)) {
     return {
-      name: path.basename(root) || "Open Work Relay",
+      name: path.basename(root) || "Agent Relay",
       version: 0,
       created: "",
     };
@@ -90,13 +90,13 @@ function loadWorkspaceConfig(root) {
   try {
     const config = JSON.parse(fs.readFileSync(configPath, "utf8"));
     return {
-      name: stringValue(config.name || path.basename(root) || "Open Work Relay"),
+      name: stringValue(config.name || path.basename(root) || "Agent Relay"),
       version: Number(config.version || 1),
       created: stringValue(config.created || ""),
     };
   } catch {
     return {
-      name: path.basename(root) || "Open Work Relay",
+      name: path.basename(root) || "Agent Relay",
       version: 0,
       created: "",
     };

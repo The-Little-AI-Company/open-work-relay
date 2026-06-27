@@ -17,7 +17,7 @@ When work moves from one tool to another, someone has to carry:
 
 Too often, that someone is still the human.
 
-I built Open Work Relay as a free/open starter kit for that middle layer.
+I built Agent Relay as a free/open starter kit for that middle layer.
 
 The starting examples are deliberately concrete: client follow-up, support tickets, and schedule changes.
 
@@ -31,7 +31,7 @@ Work mode gives a scoped job:
 
 "Use this call transcript and decision summary. Draft the follow-up email, do not overstate the promise, flag anything that needs my judgment, leave a receipt, and stop before sending."
 
-Open Work Relay turns that into a reusable task record:
+Agent Relay turns that into a reusable task record:
 
 1. Outcome
 2. Owner / next actor
@@ -45,10 +45,10 @@ It can run in a plain Markdown folder, GitHub Issues, Trello, Linear, Notion, or
 
 The setup prompt is here:
 
-https://github.com/The-Little-AI-Company/open-work-relay/blob/dev/prompts/open-work-relay-setup-prompt.md
+https://github.com/The-Little-AI-Company/agent-relay/blob/dev/prompts/agent-relay-setup-prompt.md
 
 The repo is here:
 
-https://github.com/The-Little-AI-Company/open-work-relay
+https://github.com/The-Little-AI-Company/agent-relay
 
 The core is free. Support is optional. The goal is simple: make useful AI coordination available without turning the protocol itself into a paid gate.
