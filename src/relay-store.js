@@ -17,6 +17,42 @@ function defaultNamedRelayRoot(name) {
   return path.join(defaultRelayRoot(), slugifyName(name));
 }
 
+function activePointerPath() {
+  return path.join(defaultRelayRoot(), "active");
+}
+
+function writeActiveRelay(root) {
+  fs.mkdirSync(defaultRelayRoot(), { recursive: true });
+  fs.writeFileSync(activePointerPath(), `${root}\n`);
+}
+
+function readActiveRelay() {
+  try {
+    const root = fs.readFileSync(activePointerPath(), "utf8").trim();
+    return root && fs.existsSync(path.join(root, WORKSPACE_CONFIG_FILE)) ? root : "";
+  } catch {
+    return "";
+  }
+}
+
+function findRelayRootFromCwd(startDir = process.cwd()) {
+  let dir = path.resolve(startDir);
+  while (true) {
+    if (fs.existsSync(path.join(dir, WORKSPACE_CONFIG_FILE))) {
+      return dir;
+    }
+    const parent = path.dirname(dir);
+    if (parent === dir) return "";
+    dir = parent;
+  }
+}
+
+// Resolve a workspace when no --root is given:
+// the folder you are in, then the last relay you touched, then the home default.
+function resolveRelayRoot({ explicit = "", cwd = process.cwd() } = {}) {
+  return explicit || findRelayRootFromCwd(cwd) || readActiveRelay() || defaultRelayRoot();
+}
+
 function createRelayWorkspace({ name, root = defaultNamedRelayRoot(name), now = new Date() }) {
   const workspaceName = stringValue(name).trim();
   if (!workspaceName) {
@@ -321,4 +357,8 @@ module.exports = {
   ensureRelayWorkspace,
   loadRelayDashboardData,
   parseMarkdownRecord,
+  resolveRelayRoot,
+  writeActiveRelay,
+  readActiveRelay,
+  findRelayRootFromCwd,
 };

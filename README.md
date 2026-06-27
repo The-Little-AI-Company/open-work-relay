@@ -59,23 +59,28 @@ Agent Relay is an independent product built around a public problem: humans shou
 
 The first product surface is a local personal dashboard for the user's projects.
 
-Create a named relay workspace wherever you want it:
+Create a named relay workspace, then open its dashboard — two short commands, no flags:
 
 ```bash
-node bin/agent-relay.js init "Client Ops Relay" --root ./client-ops-relay
+relay init "Client Ops Relay"
+relay dashboard
 ```
 
-With the published package, that becomes:
+`init` remembers the relay it just created, so `dashboard` finds it with no `--root`. You can also `cd` into any relay folder and run `relay dashboard` there.
+
+Install the `relay` command globally from the published package:
 
 ```bash
-npx @the-little-ai-company/agent-relay init "Client Ops Relay" --root ./client-ops-relay
+npm install -g @the-little-ai-company/agent-relay
 ```
 
-Then open the dashboard for that relay:
+Or run it without installing:
 
 ```bash
-node bin/agent-relay.js dashboard --root ./client-ops-relay
+npx @the-little-ai-company/agent-relay init "Client Ops Relay"
 ```
+
+From a clone, the same commands are `node bin/agent-relay.js init "..."` and `node bin/agent-relay.js dashboard`.
 
 The dashboard uses the relay's configured name, so the user sees "Client Ops Relay" or whatever they named it, not a hard-coded product label.
 
@@ -114,9 +119,6 @@ Use the client-call transcript and the decision summary. Draft the follow-up ema
 
 The second version is work. It has source material, boundaries, ownership, evidence, and a stop rule.
 
-Read more:
-[`docs/prompt-mode-vs-work-mode.md`](docs/prompt-mode-vs-work-mode.md)
-
 ## Transcript-Grounded Workflows
 
 The relay should not make every job look identical, but the first examples should stay close to the public transcript.
@@ -140,14 +142,12 @@ Extension examples:
 - [`examples/workflows/planning-to-tasks.md`](examples/workflows/planning-to-tasks.md)
 - [`examples/workflows/branding-content-review.md`](examples/workflows/branding-content-review.md)
 
-Formal spec:
-[`docs/specification.md`](docs/specification.md)
+## The Method
 
-Product principles:
-[`docs/product-principles.md`](docs/product-principles.md)
-
-Source grounding:
-[`docs/source-grounding.md`](docs/source-grounding.md)
+The full method — the formal specification, product principles, the Relay Loop
+Audit, Prompt Craft, the 30-Minute Relay, and source grounding — lives in a
+private companion repository. The kit in this repo is everything you need to run
+a relay; the method writeups are available separately.
 
 ## The Seven-Part Task Record
 
@@ -239,7 +239,7 @@ Support link: TODO
 
 This project was sparked by public discussion about AI agent handoffs and the real pain of moving work across Claude, Codex, ChatGPT, OpenClaw, Hermes, browser agents, and team tools.
 
-No paid material was used to build this kit. The transcript-grounded patterns are documented in [`docs/source-grounding.md`](docs/source-grounding.md). The queue adapters, templates, and TLAC packaging are independent Agent Relay implementation choices.
+No paid material was used to build this kit. The transcript-grounded patterns are documented in the private method repository. The queue adapters, templates, and TLAC packaging are independent Agent Relay implementation choices.
 
 ## License
 

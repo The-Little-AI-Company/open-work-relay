@@ -4,6 +4,7 @@
   "description": "Agent Relay local workspace and personal dashboard for AI-assisted work.",
   "license": "MIT",
   "bin": {
+    "relay": "./bin/agent-relay.js",
     "agent-relay": "./bin/agent-relay.js"
   },
   "scripts": {

@@ -1,4 +1,11 @@
-const { createRelayWorkspace, defaultNamedRelayRoot, defaultRelayRoot, ensureRelayWorkspace } = require("./relay-store");
+const {
+  createRelayWorkspace,
+  defaultNamedRelayRoot,
+  defaultRelayRoot,
+  ensureRelayWorkspace,
+  resolveRelayRoot,
+  writeActiveRelay,
+} = require("./relay-store");
 const { createDashboardServer } = require("./dashboard-server");
 
 function run(argv = process.argv.slice(2), io = process) {
@@ -33,10 +40,11 @@ function runInit(args, io = process) {
 
   const root = readOption(args, "--root") || defaultNamedRelayRoot(name);
   const workspace = createRelayWorkspace({ name, root });
+  writeActiveRelay(workspace.root);
 
   io.stdout.write(`Created relay workspace: ${workspace.name}\n`);
   io.stdout.write(`Relay folder: ${workspace.root}\n`);
-  io.stdout.write(`Dashboard: agent-relay dashboard --root "${workspace.root}"\n`);
+  io.stdout.write(`Next: relay dashboard\n`);
   return workspace;
 }
 
@@ -58,7 +66,7 @@ function readPositionals(args) {
 }
 
 function runDashboard(args, io = process) {
-  const root = readOption(args, "--root") || defaultRelayRoot();
+  const root = resolveRelayRoot({ explicit: readOption(args, "--root") });
   const requestedPort = Number(readOption(args, "--port") || 8787);
   const host = readOption(args, "--host") || "127.0.0.1";
 
@@ -102,12 +110,15 @@ function helpText() {
   return `Agent Relay
 
 Usage:
-  agent-relay init <name> [--root <path>]
-  agent-relay dashboard [--root <path>] [--port <port>] [--host <host>]
+  relay init <name> [--root <path>]
+  relay dashboard [--root <path>] [--port <port>] [--host <host>]
 
 Examples:
-  npx @the-little-ai-company/agent-relay init "Client Ops Relay" --root ./client-ops-relay
-  npx @the-little-ai-company/agent-relay dashboard --root ./client-ops-relay
+  relay init "Client Ops Relay"
+  relay dashboard
+
+--root is optional. When omitted, the relay you are inside is used, then the
+last relay you created, then the default workspace below.
 
 Environment:
   AGENT_RELAY_HOME      Default relay workspace path.

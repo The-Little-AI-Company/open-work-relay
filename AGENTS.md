@@ -40,7 +40,6 @@ If the workflow is missing or unclear, propose one before acting.
 
 Use:
 
-- `docs/specification.md`
 - `templates/workflow.md`
 - `examples/workflows/`
 

@@ -14,7 +14,7 @@ test("init requires a relay name and creates the chosen relay folder", () => {
 
   assert.equal(output.exitCode, undefined);
   assert.match(output.stdout.text, /Created relay workspace: My Client Relay/);
-  assert.match(output.stdout.text, /Dashboard:/);
+  assert.match(output.stdout.text, /Next: relay dashboard/);
   assert.ok(fs.existsSync(path.join(root, "relay.json")));
   assert.ok(fs.existsSync(path.join(root, "tasks")));
 });
