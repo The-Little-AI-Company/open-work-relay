@@ -7,9 +7,36 @@ const NEEDS_INPUT_STATUSES = new Set(["needs-input", "blocked"]);
 const REVIEW_STATUSES = new Set(["review"]);
 const READY_STATUSES = new Set(["ready"]);
 const DONE_STATUSES = new Set(["done"]);
+const WORKSPACE_CONFIG_FILE = "relay.json";
 
 function defaultRelayRoot() {
   return process.env.OPEN_WORK_RELAY_HOME || path.join(os.homedir(), ".open-work-relay");
+}
+
+function defaultNamedRelayRoot(name) {
+  return path.join(defaultRelayRoot(), slugifyName(name));
+}
+
+function createRelayWorkspace({ name, root = defaultNamedRelayRoot(name), now = new Date() }) {
+  const workspaceName = stringValue(name).trim();
+  if (!workspaceName) {
+    throw new Error("Relay name is required.");
+  }
+
+  ensureRelayWorkspace(root);
+
+  const config = {
+    name: workspaceName,
+    version: 1,
+    created: formatDate(now),
+  };
+
+  fs.writeFileSync(path.join(root, WORKSPACE_CONFIG_FILE), `${JSON.stringify(config, null, 2)}\n`);
+
+  return {
+    ...config,
+    root,
+  };
 }
 
 function ensureRelayWorkspace(root = defaultRelayRoot()) {
@@ -19,6 +46,7 @@ function ensureRelayWorkspace(root = defaultRelayRoot()) {
 }
 
 function loadRelayDashboardData(root = defaultRelayRoot()) {
+  const workspace = loadWorkspaceConfig(root);
   const tasks = readTaskRecords(path.join(root, "tasks"));
   const doneTasks = readTaskRecords(path.join(root, "done")).map((task) => ({
     ...task,
@@ -32,6 +60,7 @@ function loadRelayDashboardData(root = defaultRelayRoot()) {
     .sort(compareTasksByAttention);
 
   return {
+    name: workspace.name,
     root,
     summary: {
       needsJeff: activeTasks.filter((task) => task.needsJeff).length,
@@ -46,6 +75,32 @@ function loadRelayDashboardData(root = defaultRelayRoot()) {
     receipts,
     attention,
   };
+}
+
+function loadWorkspaceConfig(root) {
+  const configPath = path.join(root, WORKSPACE_CONFIG_FILE);
+  if (!fs.existsSync(configPath)) {
+    return {
+      name: path.basename(root) || "Open Work Relay",
+      version: 0,
+      created: "",
+    };
+  }
+
+  try {
+    const config = JSON.parse(fs.readFileSync(configPath, "utf8"));
+    return {
+      name: stringValue(config.name || path.basename(root) || "Open Work Relay"),
+      version: Number(config.version || 1),
+      created: stringValue(config.created || ""),
+    };
+  } catch {
+    return {
+      name: path.basename(root) || "Open Work Relay",
+      version: 0,
+      created: "",
+    };
+  }
 }
 
 function readTaskRecords(folder) {
@@ -245,8 +300,24 @@ function taskRank(task) {
   return 4;
 }
 
+function slugifyName(name) {
+  const slug = stringValue(name)
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+
+  return slug || "relay";
+}
+
+function formatDate(date) {
+  return date.toISOString().slice(0, 10);
+}
+
 module.exports = {
+  createRelayWorkspace,
   defaultRelayRoot,
+  defaultNamedRelayRoot,
   ensureRelayWorkspace,
   loadRelayDashboardData,
   parseMarkdownRecord,

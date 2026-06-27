@@ -2,6 +2,8 @@
 
 ## 2026-06-26
 
+- Added `open-work-relay init <name> --root <folder>` so users can create named relay workspaces wherever they want.
+- Updated the dashboard to display the relay's configured name from `relay.json`.
 - Started the local dashboard product slice with a Node CLI and Ink Console direction.
 - Added `open-work-relay dashboard` for serving a read-only local dashboard from a user-level relay workspace.
 - Added behavior tests for relay workspace loading and dashboard HTML serving.

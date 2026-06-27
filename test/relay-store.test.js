@@ -4,7 +4,22 @@ const os = require("node:os");
 const path = require("node:path");
 const test = require("node:test");
 
-const { loadRelayDashboardData } = require("../src/relay-store");
+const { createRelayWorkspace, loadRelayDashboardData } = require("../src/relay-store");
+
+test("creates a named relay workspace in a chosen folder", () => {
+  const root = path.join(fs.mkdtempSync(path.join(os.tmpdir(), "owr-init-")), "client-ops");
+
+  const workspace = createRelayWorkspace({ name: "Client Ops Relay", root });
+  const data = loadRelayDashboardData(root);
+
+  assert.equal(workspace.name, "Client Ops Relay");
+  assert.equal(workspace.root, root);
+  assert.ok(fs.existsSync(path.join(root, "relay.json")));
+  assert.ok(fs.existsSync(path.join(root, "tasks")));
+  assert.ok(fs.existsSync(path.join(root, "receipts")));
+  assert.ok(fs.existsSync(path.join(root, "done")));
+  assert.equal(data.name, "Client Ops Relay");
+});
 
 test("loads project, task, receipt, and attention summaries from a relay workspace", () => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), "owr-store-"));

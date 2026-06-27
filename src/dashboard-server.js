@@ -44,7 +44,7 @@ function renderDashboardHtml(data) {
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Open Work Relay Dashboard</title>
+    <title>${escapeHtml(data.name)} Dashboard</title>
     <style>
       :root {
         color-scheme: dark;
@@ -285,8 +285,8 @@ function renderDashboardHtml(data) {
       <div class="frame">
         <header class="topbar">
           <div>
-            <p class="eyebrow">Open Work Relay / local dashboard</p>
-            <h1>Ink Console</h1>
+            <p class="eyebrow">Open Work Relay / Ink Console</p>
+            <h1>${escapeHtml(data.name)}</h1>
           </div>
           <div class="top-actions" aria-label="Dashboard actions">
             <button class="button">Relay root</button>
@@ -305,7 +305,7 @@ function renderDashboardHtml(data) {
         <section class="layout">
           <nav class="panel" aria-label="Projects">
             <div class="rail-title">
-              <p class="eyebrow">Workspace</p>
+              <p class="eyebrow">Relay workspace</p>
               <h2>${escapeHtml(data.root)}</h2>
             </div>
             ${projectLinks}

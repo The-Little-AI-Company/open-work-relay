@@ -10,6 +10,7 @@ test("serves the Ink Console dashboard with relay task data", async (t) => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), "owr-dashboard-"));
   fs.mkdirSync(path.join(root, "tasks"), { recursive: true });
   fs.mkdirSync(path.join(root, "receipts"), { recursive: true });
+  fs.writeFileSync(path.join(root, "relay.json"), JSON.stringify({ name: "My Client Relay", version: 1 }));
 
   fs.writeFileSync(
     path.join(root, "tasks", "task-001.md"),
@@ -42,6 +43,7 @@ test("serves the Ink Console dashboard with relay task data", async (t) => {
 
   assert.equal(response.status, 200);
   assert.match(html, /Ink Console/);
+  assert.match(html, /My Client Relay/);
   assert.match(html, /Obscura/);
   assert.match(html, /Choose provider boundary/);
   assert.match(html, /needs Jeff/i);

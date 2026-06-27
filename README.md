@@ -59,21 +59,37 @@ Open Work Relay is an independent, free/open implementation of a public problem:
 
 The first product surface is a local personal dashboard for the user's projects.
 
-From this checkout:
+Create a named relay workspace wherever you want it:
 
 ```bash
-node bin/open-work-relay.js dashboard
+node bin/open-work-relay.js init "Client Ops Relay" --root ./client-ops-relay
 ```
+
+With the published package, that becomes:
+
+```bash
+npx open-work-relay init "Client Ops Relay" --root ./client-ops-relay
+```
+
+Then open the dashboard for that relay:
+
+```bash
+node bin/open-work-relay.js dashboard --root ./client-ops-relay
+```
+
+The dashboard uses the relay's configured name, so the user sees "Client Ops Relay" or whatever they named it, not a hard-coded product label.
 
 The dashboard uses the Ink Console direction: project visibility, work status, human attention, and receipts in one local browser view.
 
-By default, relay state lives outside project repos at:
+If no `--root` is provided during init, relay state still lives outside project repos by default:
 
 ```text
 ~/.open-work-relay/
-  tasks/
-  receipts/
-  done/
+  client-ops-relay/
+    relay.json
+    tasks/
+    receipts/
+    done/
 ```
 
 Use a different workspace when testing:

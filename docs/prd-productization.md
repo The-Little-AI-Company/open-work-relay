@@ -61,6 +61,8 @@ The first real product surface is a personal dashboard for the user's projects. 
 
 Chosen dashboard direction: Ink Console. The dashboard should feel like a dense local operations console: dark working surface, strong status signals, project rail, work queue, human-attention spotlight, and proof trail.
 
+Named install correction: users install a relay workspace with their own name and chosen folder. The product can be distributed as `npx open-work-relay init "Client Ops Relay" --root ./client-ops-relay`; the generated dashboard should show the relay's configured name rather than hard-coding "Open Work Relay" as the workspace identity.
+
 Open-core shape:
 
 - **Free / open:** spec, templates, adapters, setup prompt, markdown-folder adapter, CLI core, local personal dashboard.
@@ -76,7 +78,7 @@ Goal: a new user goes from zero to a working relay folder in one command.
 
 Requirements:
 
-- P1-1: A one-command scaffolder (`npx open-work-relay init` or equivalent) that creates a ready-to-use user-level relay workspace with project-linked queues. It may offer an explicit `--local` option to create `work-relay/tasks/`, `work-relay/receipts/`, and `work-relay/done/` inside the current project, but local project files are opt-in. It must not copy handoff prompts, PRDs, planning docs, or session handoff files into the target project.
+- P1-1: A one-command scaffolder (`npx open-work-relay init "Relay Name" --root <folder>` or equivalent) that creates a ready-to-use named relay workspace at the folder the user chooses. If `--root` is omitted, it creates a named folder under the user-level relay home. It may offer an explicit `--local` option later to create `work-relay/tasks/`, `work-relay/receipts/`, and `work-relay/done/` inside the current project, but local project files are opt-in. It must not copy handoff prompts, PRDs, planning docs, or session handoff files into the target project.
 - P1-2: Fill in the support link (GitHub Sponsors, Buy Me a Coffee, or Stripe).
 - P1-3: Add a second smoke-test task that exercises a blocked path (agent hits a stop rule, leaves a `needs-input` receipt) so people see the full loop.
 - P1-4: Write a quickstart that is shorter than the current README (3 steps max to first running task).
@@ -184,7 +186,7 @@ The core is free because useful AI knowledge should travel. The product is conve
 ## 8. Open Questions
 
 - OQ-1: Resolved for the first product slice: Node.js CLI, because `npx` is the lowest-friction route to one-command setup.
-- OQ-2: Resolved for the first product slice: default to `~/.open-work-relay`, with `OPEN_WORK_RELAY_HOME` and `--root` overrides.
+- OQ-2: Resolved for the first product slice: default named installs to `~/.open-work-relay/<relay-slug>`, with `OPEN_WORK_RELAY_HOME` and `--root` overrides.
 - OQ-3: What is the pricing model for the subscription tier? (Per-seat, per-team, flat?)
 - OQ-4: Should the CLI support `--json` output for agent consumption, so agents can self-check relay state programmatically?
 - OQ-5: Should there be a `open-work-relay daemon` that watches the queue and auto-flags stale claims in real time, or is the CLI poll model sufficient?
@@ -192,7 +194,7 @@ The core is free because useful AI knowledge should travel. The product is conve
 ## 9. Technical Assumptions
 
 - The CLI is a single binary or script with no heavy runtime dependencies.
-- The default markdown-folder queue lives in a user-level relay workspace outside project repos; project-local `work-relay/` folders are opt-in.
+- The default markdown-folder queue lives in a named user-level relay workspace outside project repos; project-local `work-relay/` folders are opt-in.
 - The markdown-folder queue is the universal layer; all other queue types are adapters on top.
 - Task and receipt records are user/work queue data, not product-planning documents. They should live under the configured queue root unless an external queue adapter owns them.
 - The local personal dashboard reads queue state through the same adapter interface as the CLI.
