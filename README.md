@@ -68,16 +68,19 @@ relay dashboard
 
 `init` remembers the relay it just created, so `dashboard` finds it with no `--root`. You can also `cd` into any relay folder and run `relay dashboard` there.
 
-Install the `relay` command globally from the published package:
+Install the `relay` command globally from a clone:
 
 ```bash
-npm install -g @the-little-ai-company/agent-relay
+git clone https://github.com/The-Little-AI-Company/open-work-relay
+cd open-work-relay
+npm install -g .
 ```
 
-Or run it without installing:
+Or run it without installing from inside the clone:
 
 ```bash
-npx @the-little-ai-company/agent-relay init "Client Ops Relay"
+node bin/agent-relay.js init "Client Ops Relay"
+node bin/agent-relay.js dashboard
 ```
 
 From a clone, the same commands are `node bin/agent-relay.js init "..."` and `node bin/agent-relay.js dashboard`.

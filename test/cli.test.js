@@ -6,7 +6,8 @@ const test = require("node:test");
 
 const { run } = require("../src/cli");
 
-test("init requires a relay name and creates the chosen relay folder", () => {
+test("init requires a relay name and creates the chosen relay folder", (t) => {
+  const relayHome = useTempRelayHome(t);
   const root = path.join(fs.mkdtempSync(path.join(os.tmpdir(), "owr-cli-")), "my-relay");
   const output = makeIo();
 
@@ -17,9 +18,11 @@ test("init requires a relay name and creates the chosen relay folder", () => {
   assert.match(output.stdout.text, /Next: relay dashboard/);
   assert.ok(fs.existsSync(path.join(root, "relay.json")));
   assert.ok(fs.existsSync(path.join(root, "tasks")));
+  assert.equal(fs.readFileSync(path.join(relayHome, "active"), "utf8").trim(), root);
 });
 
-test("init rejects an unnamed relay", () => {
+test("init rejects an unnamed relay", (t) => {
+  useTempRelayHome(t);
   const output = makeIo();
 
   run(["init"], output);
@@ -28,7 +31,8 @@ test("init rejects an unnamed relay", () => {
   assert.match(output.stderr.text, /Usage: agent-relay init <name>/);
 });
 
-test("init accepts the relay name after options", () => {
+test("init accepts the relay name after options", (t) => {
+  const relayHome = useTempRelayHome(t);
   const root = path.join(fs.mkdtempSync(path.join(os.tmpdir(), "owr-cli-options-")), "my-relay");
   const output = makeIo();
 
@@ -37,7 +41,24 @@ test("init accepts the relay name after options", () => {
   assert.equal(output.exitCode, undefined);
   assert.match(output.stdout.text, /Created relay workspace: Options First Relay/);
   assert.equal(JSON.parse(fs.readFileSync(path.join(root, "relay.json"), "utf8")).name, "Options First Relay");
+  assert.equal(fs.readFileSync(path.join(relayHome, "active"), "utf8").trim(), root);
 });
+
+function useTempRelayHome(t) {
+  const previous = process.env.AGENT_RELAY_HOME;
+  const relayHome = fs.mkdtempSync(path.join(os.tmpdir(), "owr-home-"));
+  process.env.AGENT_RELAY_HOME = relayHome;
+
+  t.after(() => {
+    if (previous === undefined) {
+      delete process.env.AGENT_RELAY_HOME;
+    } else {
+      process.env.AGENT_RELAY_HOME = previous;
+    }
+  });
+
+  return relayHome;
+}
 
 function makeIo() {
   const io = {
